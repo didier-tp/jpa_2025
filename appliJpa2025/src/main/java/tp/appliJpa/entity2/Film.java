@@ -1,5 +1,6 @@
 package tp.appliJpa.entity2;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 //relation n-n avec infos supplementaire dans table de jointure
 @Entity
@@ -24,12 +27,13 @@ public class Film {
 	private String titre;
 	
 	@Column(name="date_sortie")
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	
 	private String producteur;
 	
 	@OneToMany(mappedBy="film")
-	private List<RoleActeurFilm> rolesActeurs;
+	private List<RoleActeurFilm> rolesActeurs = new ArrayList<>();
 	
 	public Long getIdFilm() {
 		return idFilm;

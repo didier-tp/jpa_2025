@@ -13,15 +13,15 @@ public class RoleActeurFilmCompositePk implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name="id_acteur")
-	private long idActeur;
+	private Long idActeur;
 	
 	@Column(name="id_film")
-	private long idFilm; 
+	private Long idFilm; 
 	
 	public RoleActeurFilmCompositePk() {
 		super();
 	}
-	public RoleActeurFilmCompositePk(long idActeur, long idFilm) {
+	public RoleActeurFilmCompositePk(Long idActeur, Long idFilm) {
 		super();
 		this.idActeur = idActeur;
 		this.idFilm = idFilm;
@@ -49,16 +49,16 @@ public class RoleActeurFilmCompositePk implements Serializable {
 			return false;
 		return true;
 	}
-	public long getIdActeur() {
+	public Long getIdActeur() {
 		return idActeur;
 	}
-	public void setIdActeur(long idActeur) {
+	public void setIdActeur(Long idActeur) {
 		this.idActeur = idActeur;
 	}
-	public long getIdFilm() {
+	public Long getIdFilm() {
 		return idFilm;
 	}
-	public void setIdFilm(long idFilm) {
+	public void setIdFilm(Long idFilm) {
 		this.idFilm = idFilm;
 	}
 	

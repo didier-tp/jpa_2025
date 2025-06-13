@@ -4,6 +4,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,16 +17,21 @@ public class RoleActeurFilm {
 	private String role;
 	
 	@ManyToOne
-	@JoinColumn(name="id_acteur", insertable=false, updatable=false)
+	//@JoinColumn(name="id_acteur", insertable=false, updatable=false) //JPA >=1
+	@JoinColumn(name="id_acteur")
+	@MapsId("idActeur") //pk.idActeur //JPA >=2
 	private Acteur acteur;
 	
 	@ManyToOne
-	@JoinColumn(name="id_film" , insertable=false, updatable=false)
+	//@JoinColumn(name="id_film" , insertable=false, updatable=false) //JPA >=1
+	@JoinColumn(name="id_film" )
+	@MapsId("idFilm") //pk.idFilm //JPA >=2
 	private Film film;
 	
 	
 	public RoleActeurFilm() {
-		super();		
+		super();
+		pk = new RoleActeurFilmCompositePk();
 	}
 	
 	public RoleActeurFilm(String role, Acteur acteur, Film film) {

@@ -20,6 +20,10 @@ DROP TABLE IF EXISTS acteur_film;
 DROP TABLE IF EXISTS acteur;
 DROP TABLE IF EXISTS film;
 
+DROP TABLE IF EXISTS ligne_facture;
+DROP TABLE IF EXISTS facture;
+DROP TABLE IF EXISTS article;
+
 
 create table commande (
 numero integer not null auto_increment,
@@ -190,9 +194,9 @@ CREATE TABLE film
        producteur VARCHAR(48),
        PRIMARY KEY (id_film) );
 
-INSERT INTO film Values (1,'Film1' , '1950-02-23' , 'producteur xy');
-INSERT INTO film Values (2,'Film2' , '1960-02-23' , 'producteur xy');
-INSERT INTO film Values (3,'Film3' , '1970-02-23' , 'producteur xx');
+INSERT INTO film Values (1,'Film1' , '1950-02-23' , 'producteur xx');
+INSERT INTO film Values (2,'Film2' , '1960-02-23' , 'producteur yy');
+INSERT INTO film Values (3,'Film3' , '1970-02-23' , 'producteur zz');
 
 
 CREATE TABLE acteur
@@ -215,6 +219,12 @@ ALTER TABLE acteur_film ADD CONSTRAINT avec_acteur_valide
                           FOREIGN KEY  (id_acteur) REFERENCES acteur(id_acteur);
 ALTER TABLE acteur_film ADD CONSTRAINT avec_film_valide
                           FOREIGN KEY  (id_film) REFERENCES film(id_film);
+                          
+INSERT INTO acteur_film(id_acteur,id_film,role) Values (1,1 , 'pecheur' );
+INSERT INTO acteur_film(id_acteur,id_film,role) Values (1,2 , 'jardinier' );
+INSERT INTO acteur_film(id_acteur,id_film,role) Values (2,1 , 'policier' );
+INSERT INTO acteur_film(id_acteur,id_film,role) Values (2,2 , 'voleur' );
+INSERT INTO acteur_film(id_acteur,id_film,role) Values (2,3 , 'amoureux' );
                           
 CREATE TABLE article
      ( id integer  NOT NULL auto_increment,

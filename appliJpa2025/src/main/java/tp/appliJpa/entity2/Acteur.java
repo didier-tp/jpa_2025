@@ -1,5 +1,6 @@
 package tp.appliJpa.entity2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -22,6 +23,15 @@ public class Acteur  {
 	private String nom;
 	//private String prenom;
 	
+	@Override
+	public String toString() {
+		return "[" + idActeur+ "] " + " "+ this.getNom();
+	}
+
+	@OneToMany(mappedBy="acteur")
+	private List<RoleActeurFilm> rolesFilms  = new ArrayList<>();;
+	
+	
 	
 	public String getNom() {
 		return nom;
@@ -38,14 +48,7 @@ public class Acteur  {
 		this.idActeur = idActeur;
 	}
 
-	@Override
-	public String toString() {
-		return "[" + idActeur+ "] " + " "+ this.getNom();
-	}
 
-	@OneToMany(mappedBy="acteur")
-	private List<RoleActeurFilm> rolesFilms;
-	
 	
 	public List<RoleActeurFilm> getRolesFilms() {
 		return rolesFilms;

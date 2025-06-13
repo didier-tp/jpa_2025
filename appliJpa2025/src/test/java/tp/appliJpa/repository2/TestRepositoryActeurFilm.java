@@ -61,7 +61,7 @@ class TestRepositoryActeurFilm {
 			nouveauFilm.setTitre("nom du nouveau film");
 			nouveauFilm.setDate(new Date());
 			nouveauFilm.setProducteur("nouveau producteur");
-			repositoryFilm.insertNew(nouveauFilm);
+			nouveauFilm = repositoryFilm.insertNew(nouveauFilm);
 			long num_film = nouveauFilm.getIdFilm();
 			
 			System.out.println("id du nouveau film: " + num_film);
@@ -73,8 +73,7 @@ class TestRepositoryActeurFilm {
 			
 			repositoryRoleActeurFilm.createRoleActeurFilm(r1);
 			repositoryRoleActeurFilm.createRoleActeurFilm(r2);
-			
-			
+		
 			//verif:
 			
 			System.out.println("liste des films de l'acteur 1 (apres insertion/sauvegarde nouveau film):");
@@ -118,6 +117,6 @@ class TestRepositoryActeurFilm {
 			
 			f=(Film) repositoryFilm.findById(num_film);
 			assertTrue(f==null);
-
+		
 	}
 }

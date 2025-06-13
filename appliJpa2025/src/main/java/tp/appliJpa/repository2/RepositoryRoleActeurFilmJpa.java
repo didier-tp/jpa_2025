@@ -31,8 +31,15 @@ public class RepositoryRoleActeurFilmJpa extends RepositoryGenericJpa<RoleActeur
 
 	@Override
 	public RoleActeurFilmCompositePk createRoleActeurFilm(RoleActeurFilm roleActeurFilm) {
+		//rechargement si nécessaire des entités liées (éventuellement détachées) dans le contexte de persistance
+		//utile ou pas en fonction du contexte (transaction unique ou transactions séparées)
+		if( ! entityManager.contains(roleActeurFilm.getActeur()))
+		      roleActeurFilm.setActeur( entityManager.find(Acteur.class,roleActeurFilm.getActeur().getIdActeur()));
+		if( ! entityManager.contains(roleActeurFilm.getFilm()))
+		      roleActeurFilm.setFilm( entityManager.find(Film.class,roleActeurFilm.getFilm().getIdFilm()));
+		
 		RoleActeurFilm savedRoleActeurFilm =  this.insertNew(roleActeurFilm);
-		return roleActeurFilm.getPk();
+		return savedRoleActeurFilm.getPk();
 	};
 
 	@Override
