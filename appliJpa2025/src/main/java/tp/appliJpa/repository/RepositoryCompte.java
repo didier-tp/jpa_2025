@@ -11,6 +11,10 @@ public interface RepositoryCompte extends RepositoryGeneric<Compte,Long>{
 	//variante du findById() qui remonte en plus les operations rattachées au compte
      Compte 	findWithOperationsById(long numCompte);
      
+   //variante du findById() qui remonte en plus les operations de petites sommes rattachées au compte
+     //ne remonte que les operations rattachées au compte que si la valeur absolue du montant est inférieur à maxAmount
+     Compte 	findWithSmallOperationsById(long numCompte , double maxAmount);
+     
      //retourne tous les comptes d'un client:
      List<Compte> 	findByClientId(long idClient);
      

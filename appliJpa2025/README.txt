@@ -5,6 +5,9 @@ avec base de données de référence BaseTpJpa2025 (Mysql/MariaDB) à préparer 
 java >=17
 JPA 3.1 (jakarta.persistence... à la place de javax.persitence... )
 
+-------------------
+NB: structures des tables visibles au niveau du script  src/main/script/mysql_mariadb/init-db.sql
+    structures objets(avec diag UML) dans src/main/resources/...png
 ---------------------------------------
 tp.appliJpa.entity.Employe 
 tp.appliJpa.repository.RepositoryEmployeSansSpring à tester via src/main/java/tp.appliJpa.TestSansSpringApp

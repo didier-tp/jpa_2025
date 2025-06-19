@@ -16,6 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 
@@ -48,6 +50,13 @@ attributeNodes = {
     query="SELECT cpt FROM Client cli LEFT JOIN  cli.comptes cpt WHERE cli.id = :idClient")
 @NamedQuery(name="Compte.findBySoldeMini",
      query="SELECT cpt FROM Compte cpt WHERE cpt.solde >= :soldeMini")
+
+@NamedEntityGraph(name = "entity-graph-compte-operations",
+	attributeNodes = {
+	@NamedAttributeNode(value="operations"),
+	}
+)
+
 //Dans la requête JPQL ci dessus cpt est un alias pour une instance appartenant
 //à la collection cli.comptes
 //@Table(name="Compte")

@@ -1,13 +1,22 @@
 package tp.appliJpa.entity2;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="article")
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name = "type_article", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue("Article")
+//NB: discriminator column not mandatory for strategy = InheritanceType.JOINED , not activated here, just for performance boost
 public class Article {
 	
 	@Id @GeneratedValue( strategy = GenerationType.IDENTITY )

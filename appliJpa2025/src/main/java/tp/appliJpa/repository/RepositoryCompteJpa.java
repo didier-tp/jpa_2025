@@ -49,7 +49,7 @@ public class RepositoryCompteJpa extends RepositoryGenericJpa<Compte,Long>
 
 	@Override
 	public Compte findWithOperationsById(long numCompte) {
-		//SECONDE VERSION (BIEN/MIEUX) :  NamedQuery avec mot clef fetch .
+		//SECONDE VERSION (BIEN/MIEUX) :  NamedQuery avec mot clef fetch
 		return entityManager.createNamedQuery("Compte.findWithOperationsById", Compte.class)
 				            .setParameter("numCompte", numCompte)
 				            .getSingleResult();
@@ -67,5 +67,11 @@ public class RepositoryCompteJpa extends RepositoryGenericJpa<Compte,Long>
 		return entityManager.createNamedQuery("Compte.findBySoldeMini", Compte.class)
 	            .setParameter("soldeMini", soldeMini)
 	            .getResultList();
+	}
+
+	@Override
+	public Compte findWithSmallOperationsById(long numCompte, double maxAmount) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

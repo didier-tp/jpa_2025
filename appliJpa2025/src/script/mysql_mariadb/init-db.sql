@@ -21,7 +21,10 @@ DROP TABLE IF EXISTS acteur;
 DROP TABLE IF EXISTS film;
 
 DROP TABLE IF EXISTS ligne_facture;
+DROP TABLE IF EXISTS client_infos_facture;
 DROP TABLE IF EXISTS facture;
+DROP TABLE IF EXISTS article_materiel;
+DROP TABLE IF EXISTS article_numerique;
 DROP TABLE IF EXISTS article;
 
 
@@ -236,10 +239,40 @@ INSERT INTO article Values (1,'article1',5.5);
 INSERT INTO article Values (2,'article2',6.6);
 INSERT INTO article Values (3,'article3',7.7);
 
+CREATE TABLE article_materiel
+     ( id integer,
+       poids double ,
+       volume double,
+       PRIMARY KEY (id) ); 
+	   
+
+ALTER TABLE article_materiel ADD CONSTRAINT complement_materiel_pour_article_valide 
+                          FOREIGN KEY  (id) REFERENCES article(id); 
+
+INSERT INTO article_materiel(id,poids,volume) Values (2,1.1,0.2);						  
+	   
+CREATE TABLE article_numerique
+     ( id integer,
+       download_url VARCHAR(128) ,
+       description_url VARCHAR(128),
+       PRIMARY KEY (id) ); 	 
+
+ALTER TABLE article_numerique ADD CONSTRAINT complement_numerique_pour_article_valide 
+                          FOREIGN KEY  (id) REFERENCES article(id); 
+
+INSERT INTO article_numerique(id,download_url,description_url) Values (3,"http://xyz/download/a3","http://xyz/description/a3");							  
+
 CREATE TABLE facture
      ( numero integer  NOT NULL auto_increment,
        date VARCHAR(12) ,
-       PRIMARY KEY (numero) );                          
+       PRIMARY KEY (numero) );   
+       
+CREATE TABLE client_infos_facture(
+       num_facture integer  NOT NULL ,
+       nom VARCHAR(64) ,
+       adresse VARCHAR(128) ,
+       email VARCHAR(128) ,
+       PRIMARY KEY (num_facture)  );     
 
 INSERT INTO facture Values (1,'2025-05-12');
 
@@ -249,11 +282,16 @@ CREATE TABLE ligne_facture
        id_article integer,
        quantite integer default 1,
        PRIMARY KEY (id) );  
+
+ALTER TABLE client_infos_facture ADD CONSTRAINT infos_client_ref_facture_valide 
+                          FOREIGN KEY  (num_facture) REFERENCES facture(numero);  
        
 ALTER TABLE ligne_facture ADD CONSTRAINT ligne_ref_facture_valide 
                           FOREIGN KEY  (id_facture) REFERENCES facture(numero);       
 ALTER TABLE ligne_facture ADD CONSTRAINT ligne_ref_article_valide 
-                          FOREIGN KEY  (id_article) REFERENCES article(id);   
+                          FOREIGN KEY  (id_article) REFERENCES article(id);  
+                          
+INSERT INTO client_infos_facture(num_facture,nom,adresse,email) Values (1,'client_Abc','1 rue elle 75001 Paris','client_abc@gmail.com');                          
                           
 INSERT INTO ligne_facture(id_facture,id_article,quantite) Values (1,1,2);
 INSERT INTO ligne_facture(id_facture,id_article,quantite) Values (1,2,3);
@@ -261,7 +299,10 @@ INSERT INTO ligne_facture(id_facture,id_article,quantite) Values (1,3,1);
 
 select * from ligne_facture;
 select * from facture;
+select * from client_infos_facture;
 select * from article;
+select * from article_materiel;
+select * from article_numerique;
 
 SELECT * from film;
 SELECT * from acteur;    
