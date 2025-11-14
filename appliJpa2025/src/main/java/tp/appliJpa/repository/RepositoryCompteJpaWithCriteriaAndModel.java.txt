@@ -82,7 +82,7 @@ public class RepositoryCompteJpaWithCriteriaAndModel extends RepositoryGenericJp
 		CriteriaQuery<Compte> cq = cb.createQuery(Compte.class);
 		Root<Compte> root = cq.from(Compte.class);
 		cq.select(root);
-		cq.where(cb.greaterThanOrEqualTo( root.get(Compte_.SOLDE), soldeMini));
+		cq.where(cb.greaterThanOrEqualTo( root.get(Compte_.solde), soldeMini));
 		return entityManager.createQuery(cq).getResultList();
 	}
 
@@ -107,6 +107,12 @@ public class RepositoryCompteJpaWithCriteriaAndModel extends RepositoryGenericJp
 		cq.select(clientRoot.join("comptes"));
 		cq.where(cb.equal(clientRoot.get(Client_.ID), idClient));
 		return entityManager.createQuery(cq).getResultList();
+	}
+
+	@Override
+	public Compte findWithSmallOperationsById(long numCompte, double maxAmount) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

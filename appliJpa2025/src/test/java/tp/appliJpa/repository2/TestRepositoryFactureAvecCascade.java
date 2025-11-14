@@ -84,6 +84,7 @@ class TestRepositoryFactureAvecCascade {
 			Article ab = new Article(null, "ArticleB", 2.8);
 			
 			Facture nouvelleFacture = new Facture(); 
+			nouvelleFacture.setNom_client("toto");
 			LigneFacture ligneFacture1 = new LigneFacture(aa,nouvelleFacture,2);
 			nouvelleFacture.getLignes().add(ligneFacture1);
 			LigneFacture ligneFacture2 = new LigneFacture(ab,nouvelleFacture,5);

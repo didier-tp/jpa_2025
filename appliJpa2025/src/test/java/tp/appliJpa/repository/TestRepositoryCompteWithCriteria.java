@@ -127,8 +127,8 @@ class TestRepositoryCompteWithCriteria {
 		repositoryOperation.insertNew(opC);
 		
 		//Compte compteRelu = repositoryCompte.findById(numCompte);//avec lazy exception
-		Compte compteRelu = repositoryCompte.findWithOperationsById(numCompte); //OK with EntityGraph
-		//Compte compteRelu = repositoryCompte.findWithSmallOperationsById(numCompte,5.5);//with EntityGraph, condition ( -5.5  <= op.montant <= 5.5 )
+		//Compte compteRelu = repositoryCompte.findWithOperationsById(numCompte); //OK with EntityGraph
+		Compte compteRelu = repositoryCompte.findWithSmallOperationsById(numCompte,5.5);//with EntityGraph, condition ( -5.5  <= op.montant <= 5.5 )
 		System.out.println("comteRelu="+ compteRelu);
 		List<Operation> operations = compteRelu.getOperations();
 		for (Operation op : operations) {

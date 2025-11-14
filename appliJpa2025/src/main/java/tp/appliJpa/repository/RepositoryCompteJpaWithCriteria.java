@@ -148,5 +148,11 @@ public class RepositoryCompteJpaWithCriteria extends RepositoryGenericJpa<Compte
 		
 	}
 
+	@Override
+	public List<Compte> findAllByType(String typeCompte) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

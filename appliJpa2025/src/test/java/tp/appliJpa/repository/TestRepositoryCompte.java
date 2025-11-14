@@ -44,7 +44,7 @@ class TestRepositoryCompte {
 		repositoryClient.insertNew(cliX);
 		
 		
-	
+		//List<Compte> comptes = repositoryCompte.findAllByType("CompteCourant");
 		
 		List<Compte> comptes = repositoryCompte.findByClientId(cliX.getId());
 		System.out.println("comptes du client X:");

@@ -62,6 +62,9 @@ attributeNodes = {
 //@Table(name="Compte")
 public class Compte {
 	
+	@Column(name="type_compte", insertable = false , updatable = false)
+	private String typeCompte; //+get/set
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long  numero;
@@ -172,6 +175,18 @@ public List<Client> getClients() {
 
 public void setClients(List<Client> clients) {
 	this.clients = clients;
+}
+
+
+
+public String getTypeCompte() {
+	return typeCompte;
+}
+
+
+
+public void setTypeCompte(String typeCompte) {
+	this.typeCompte = typeCompte;
 }
 
 

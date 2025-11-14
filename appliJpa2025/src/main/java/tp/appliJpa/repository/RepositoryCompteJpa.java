@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import tp.appliJpa.entity.Compte;
+import tp.appliJpa.entity.Operation;
 import tp.appliJpa.repository.generic.RepositoryGenericJpa;
 
 @Repository   
@@ -46,15 +47,22 @@ public class RepositoryCompteJpa extends RepositoryGenericJpa<Compte,Long>
 	*/
 	
 	
-
+   
 	@Override
 	public Compte findWithOperationsById(long numCompte) {
 		//SECONDE VERSION (BIEN/MIEUX) :  NamedQuery avec mot clef fetch
+		
+		/*
+		return entityManager.createQuery("SELECT c FROM Compte c LEFT JOIN FETCH c.operations WHERE c.numero = :numCompte", Compte.class)
+	            .setParameter("numCompte", numCompte)
+	            .getSingleResult();
+		*/
+		
 		return entityManager.createNamedQuery("Compte.findWithOperationsById", Compte.class)
 				            .setParameter("numCompte", numCompte)
 				            .getSingleResult();
 	}
-
+     
 	@Override
 	public List<Compte> findByClientId(long idClient) {
 		return entityManager.createNamedQuery("Compte.findByClientId", Compte.class)
@@ -73,5 +81,11 @@ public class RepositoryCompteJpa extends RepositoryGenericJpa<Compte,Long>
 	public Compte findWithSmallOperationsById(long numCompte, double maxAmount) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Compte> findAllByType(String typeCompte) {
+		return entityManager.createQuery("SELECT c FROM Compte c WHERE c.typeCompte = :num" , Compte.class)
+				.setParameter("num", typeCompte).getResultList();
 	}
 }

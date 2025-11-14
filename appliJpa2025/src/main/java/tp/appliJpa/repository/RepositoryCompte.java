@@ -19,5 +19,7 @@ public interface RepositoryCompte extends RepositoryGeneric<Compte,Long>{
      List<Compte> 	findByClientId(long idClient);
      
      List<Compte> findBySoldeMini(double soldeMini);
+     
+     List<Compte> findAllByType(String typeCompte);
 	
 }
