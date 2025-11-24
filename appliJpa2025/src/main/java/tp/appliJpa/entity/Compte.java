@@ -4,22 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.NamedAttributeNode;
-import jakarta.persistence.NamedEntityGraph;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 
 
@@ -59,7 +44,7 @@ attributeNodes = {
 
 //Dans la requête JPQL ci dessus cpt est un alias pour une instance appartenant
 //à la collection cli.comptes
-//@Table(name="Compte")
+//@Table(name="Compt") + "e" ajouté via MyHibernateInterceptor (test temporaire)
 public class Compte {
 	
 	@Column(name="type_compte", insertable = false , updatable = false)
