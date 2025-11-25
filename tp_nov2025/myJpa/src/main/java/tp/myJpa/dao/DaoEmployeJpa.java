@@ -33,4 +33,22 @@ public class DaoEmployeJpa implements DaoEmploye {
 		return e; //en retour e avec sous partie .getId() pas null
 	}
 
+	@Override
+	public Employe findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Employe update(Employe e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

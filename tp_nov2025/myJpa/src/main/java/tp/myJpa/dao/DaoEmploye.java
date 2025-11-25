@@ -2,12 +2,12 @@ package tp.myJpa.dao;
 
 import java.util.List;
 
+import tp.myJpa.dao.generic.DaoGeneric;
 import tp.myJpa.entity.Employe;
 
-public interface DaoEmploye {
+public interface DaoEmploye extends DaoGeneric<Employe,Long>{
 	
-	List<Employe> findAll();
-	Employe insertNew(Employe e); //en retour : Employe avec numero auto incrémenté
-	//...
+
+	//on hérite automatiquement de findAll() , de insertNew , ....
 
 }
