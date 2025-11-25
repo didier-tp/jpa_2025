@@ -1,5 +1,7 @@
 package tp.myJpa.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 //@Transacational en verson spring (ou jakarta)
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +47,21 @@ public class DaoEmployeJpaAvecSpring extends DaoGenericJpa<Employe,Long> impleme
     	entityManager.merge(e); //declenche UPDATE SQL
 		return e;
 	}
+    
+    
+    public List<Employe> findByFirstName(String firstName){
+    	//à coder et à appeler (coté test) en TP:
+    	return entityManager.createQuery("SELECT e FROM Employe e WHERE e.firstName = :prenom" , Employe.class)
+    			.setParameter("prenom", firstName)
+    			.getResultList();
+    }
+    
+    public Employe findByEmail(String email){
+    	//à coder et à appeler (coté test) en TP:
+    	return entityManager.createQuery("SELECT e FROM Employe e WHERE e.email = :email" , Employe.class)
+    			.setParameter("email", email)
+    			.getSingleResult();
+    }
 	
 
 }

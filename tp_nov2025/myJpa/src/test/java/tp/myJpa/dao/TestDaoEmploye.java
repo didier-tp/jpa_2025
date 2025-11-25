@@ -15,6 +15,15 @@ public class TestDaoEmploye {
 	private DaoEmployeJpaAvecSpring daoEmploye;
 	
 	@Test
+	public void testRecherches(){
+		 Employe e = daoEmploye.findByEmail("alain.therieur@xyz.com");
+		 System.out.println("res de findByEmail:" + e);
+		 
+		 List<Employe> listeEmp = daoEmploye.findByFirstName("didier");
+		 System.out.println("res de findByFirstName:" + listeEmp);
+	}
+	
+	@Test
 	public void testAjoutEtRelecture(){
 		        //utilisation du dao (qui utilise EntityManager en interne):
 				Employe emp1 = new Employe(null,"didier","Defrance","d2f.defrance@gmail.com");
