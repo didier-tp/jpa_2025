@@ -12,7 +12,7 @@ import tp.myJpa.entity.Employe;
 public class TestDaoEmploye {
 	
 	@Autowired
-	private DaoEmploye daoEmploye;
+	private DaoEmployeJpaAvecSpring daoEmploye;
 	
 	@Test
 	public void testAjoutEtRelecture(){
@@ -28,5 +28,8 @@ public class TestDaoEmploye {
 					System.out.println(e.toString());
 				}
 	}
-
+	
+	public void testAvecSpring() {
+		
+	}
 }

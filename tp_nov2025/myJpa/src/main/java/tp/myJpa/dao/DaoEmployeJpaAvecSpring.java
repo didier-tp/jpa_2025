@@ -30,5 +30,19 @@ public class DaoEmployeJpaAvecSpring extends DaoGenericJpa<Employe,Long> impleme
 		return entityManager;
 	}
 	
+	public Employe rechercherEmployeParId(Long id) {
+		//....
+		return null;
+	}
+	
+	public void supprimerEmployeParId(Long id) {
+		//....
+	}
+	
+    public Employe modifierEmloye(Employe e) {
+    	//...
+		return e;
+	}
+	
 
 }
