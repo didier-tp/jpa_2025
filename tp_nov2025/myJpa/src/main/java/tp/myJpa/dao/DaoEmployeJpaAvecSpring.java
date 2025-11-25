@@ -30,17 +30,19 @@ public class DaoEmployeJpaAvecSpring extends DaoGenericJpa<Employe,Long> impleme
 		return entityManager;
 	}
 	
+	//exercice (TP) : reprogrammer en francais certaines méthodes héritées pour s'entrainer:
+	
 	public Employe rechercherEmployeParId(Long id) {
-		//....
-		return null;
+		return entityManager.find(Employe.class, id);  //declenche à peu près  SELECT .... WHERE e.id=id
 	}
 	
 	public void supprimerEmployeParId(Long id) {
-		//....
+		Employe eASupprimer = entityManager.find(Employe.class, id);
+		entityManager.remove(eASupprimer); //declenche DELETE SQL
 	}
 	
     public Employe modifierEmloye(Employe e) {
-    	//...
+    	entityManager.merge(e); //declenche UPDATE SQL
 		return e;
 	}
 	
