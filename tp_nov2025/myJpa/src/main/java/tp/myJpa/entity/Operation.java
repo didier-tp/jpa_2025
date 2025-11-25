@@ -30,15 +30,22 @@ public class Operation {
 	private Compte compte;
 	
 	//+constructeurs , get/set, .toString()
-	@Override
-	public String toString() {
-		return "Operation [numOp=" + numOp + ", label=" + label + ", montant=" + montant + ", dateOp=" + dateOp + "]";
-	}
 	
 
 	public Operation() {
 		super();
 	}
+
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Operation [numOp=" + numOp + ", label=" + label + ", montant=" + montant + ", dateOp=" + dateOp + "]";
+	}
+
+
+
 
 	public Operation(Long numOp, String label, Double montant) {
 		super();

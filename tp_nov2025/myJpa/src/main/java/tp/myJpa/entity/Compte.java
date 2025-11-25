@@ -22,15 +22,12 @@ public class Compte {
 	
 	//ATTENTION, valeur de mappedBy = pas un nom de colonne 
 	//, mais nom java en dessous du @ManyToOne
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "compte") //V1
-	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "compte") //V2
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "compte") //V1
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compte") //V2
 	private List<Operation> operations;
 
 	//+constructeurs , get/set, .toString()
-	@Override
-	public String toString() {
-		return "Compte [numero=" + numero + ", label=" + label + ", solde=" + solde + "]";
-	}
+
 
 	public Compte(Long numero, String label, Double solde) {
 		super();
@@ -38,6 +35,15 @@ public class Compte {
 		this.label = label;
 		this.solde = solde;
 	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Compte [numero=" + numero + ", label=" + label + ", solde=" + solde + "]";
+	}
+
+
 
 	public Compte() {
 		super();
