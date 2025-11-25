@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "Employe.findByFirstName" , query = "SELECT e FROM Employe e WHERE e.firstName = :prenom")
 public class Employe {
 	
 	@Id //id/primary key

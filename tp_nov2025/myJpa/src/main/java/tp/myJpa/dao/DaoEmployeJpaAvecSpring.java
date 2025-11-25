@@ -51,7 +51,12 @@ public class DaoEmployeJpaAvecSpring extends DaoGenericJpa<Employe,Long> impleme
     
     public List<Employe> findByFirstName(String firstName){
     	//à coder et à appeler (coté test) en TP:
+    	/*
     	return entityManager.createQuery("SELECT e FROM Employe e WHERE e.firstName = :prenom" , Employe.class)
+    			.setParameter("prenom", firstName)
+    			.getResultList();
+    	*/
+    	return entityManager.createNamedQuery("Employe.findByFirstName" , Employe.class)
     			.setParameter("prenom", firstName)
     			.getResultList();
     }
@@ -60,6 +65,7 @@ public class DaoEmployeJpaAvecSpring extends DaoGenericJpa<Employe,Long> impleme
     	//à coder et à appeler (coté test) en TP:
     	return entityManager.createQuery("SELECT e FROM Employe e WHERE e.email = :email" , Employe.class)
     			.setParameter("email", email)
+    			.setMaxResults(1)
     			.getSingleResult();
     }
 	
