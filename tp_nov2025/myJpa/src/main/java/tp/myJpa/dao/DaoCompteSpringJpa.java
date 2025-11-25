@@ -26,4 +26,33 @@ public class DaoCompteSpringJpa extends DaoGenericJpa<Compte,Long> implements Da
 	
 	//+code d'éventuels .find... spécifiques
 
+	/*
+	@Override
+	public Compte findWithOperationsById(long numCompte) {
+		//PREMIERE VERSION (PAS BIEN!!!!!)
+		Compte compte = entityManager.find(Compte.class, numCompte);
+		for(Operation op : compte.getOperations()) {
+			//boucle for (à vide) pour remonter en mode lazy
+			//les valeurs de la collection operation en mémoire
+			//avant que ce ne soit trop tard (avant que EJB ou Spring ferme
+			//automatiquement le entityManager).
+		}
+		return compte;
+	}
+	*/
+
+
+
+    @Override
+    public Compte findWithOperationsById(long numCompte) {
+        //SECONDE VERSION (BIEN/MIEUX) :  Query avec mot clef fetch
+
+
+		return entityManager.createQuery("SELECT c FROM Compte c LEFT JOIN FETCH c.operations WHERE c.numero = :numCompte", Compte.class)
+	            .setParameter("numCompte", numCompte)
+	            .getSingleResult();
+
+    }
+
+
 }

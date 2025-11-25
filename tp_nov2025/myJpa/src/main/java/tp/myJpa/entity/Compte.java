@@ -2,12 +2,15 @@ package tp.myJpa.entity;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class Compte {
@@ -16,8 +19,10 @@ public class Compte {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long numero;
 	
+	@Length(min = 2 , message="min valid length of Compte.label is 2")
 	private String label;
 	
+	@Min(value=-999,message="solde is too low and invalid (less than -999)")
 	private Double solde;
 	
 	//ATTENTION, valeur de mappedBy = pas un nom de colonne 
