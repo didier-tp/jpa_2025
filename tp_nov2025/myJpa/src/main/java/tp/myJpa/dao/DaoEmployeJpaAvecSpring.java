@@ -8,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import tp.myJpa.dao.generic.DaoGenericJpa;
 import tp.myJpa.entity.Employe;
 
@@ -66,13 +69,23 @@ public class DaoEmployeJpaAvecSpring extends DaoGenericJpa<Employe,Long> impleme
     	*/
     }
     
+    /*
     public Employe findByEmail(String email){
     	//à coder et à appeler (coté test) en TP:
     	return entityManager.createQuery("SELECT e FROM Employe e WHERE e.email = :email" , Employe.class)
     			.setParameter("email", email)
     			.setMaxResults(1)
     			.getSingleResult();
-    }
-	
+    }*/
+    
+ 
+	public Employe findByEmail(String email){
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Employe> cq = cb.createQuery(Employe.class);
+		Root<Employe> root = cq.from(Employe.class);
+		cq.select(root);
+		cq.where(cb.equal( root.get("email"), email));
+		return entityManager.createQuery(cq).getSingleResult();
+	}
 
 }
