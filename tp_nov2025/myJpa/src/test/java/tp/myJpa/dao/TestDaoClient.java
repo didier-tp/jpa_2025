@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import tp.myJpa.entity.Client;
 import tp.myJpa.entity.Compte;
+import tp.myJpa.entity.CompteEpargne;
 
 @SpringBootTest
 public class TestDaoClient {
@@ -26,7 +27,7 @@ public class TestDaoClient {
 		cc1.getClients().add(cli1); //JoinTable coté compte
 		daoCompte.insertNew(cc1);
 		
-		Compte cc2 = new Compte(null,"comptecB",70.0 );
+		Compte cc2 = new CompteEpargne(null,"comptecB",70.0 , 2.2);
 		cc2.getClients().add(cli1); //JoinTable coté compte
 		daoCompte.insertNew(cc2); 
 		

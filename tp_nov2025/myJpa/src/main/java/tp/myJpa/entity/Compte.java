@@ -5,11 +5,16 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -17,6 +22,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_compte" , discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("CompteCourant") //par défaut (pour instnce de Compte)
+ //et @DiscriminatorValue("CompteEpargne") dans sous classe CompteEpargne
 public class Compte {
 	
 	@Id
