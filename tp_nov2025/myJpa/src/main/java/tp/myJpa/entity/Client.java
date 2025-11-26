@@ -8,8 +8,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -23,11 +21,8 @@ public class Client {
 
 	private String nom;
 	
-	@ManyToMany( fetch = FetchType.LAZY)
-	@JoinTable(name = "client_compte",
-	joinColumns = {@JoinColumn(name = "id_client")},
-	inverseJoinColumns = {@JoinColumn(name = "num_compte")})
-	private List<Compte> comptes = new ArrayList<>();//soit new ici, soit setComptes() avec if et new
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
+	private List<Compte> comptes = new ArrayList<>();//soit new ici, addCompte() avec if et new
 	//+get/set 
 	
 	public Client() {

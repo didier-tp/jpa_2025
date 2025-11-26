@@ -10,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
@@ -31,10 +33,14 @@ public class Compte {
 	//, mais nom java en dessous du @ManyToOne
 	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "compte") //V1
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compte") //V2
-	private List<Operation> operations;
+	private List<Operation> operations = new ArrayList<>(); //soit new ici, addOperation() avec if et new
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "comptes")
-	private List<Client> clients = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name = "client_compte",
+	joinColumns = {@JoinColumn(name = "num_compte")},
+	inverseJoinColumns = {@JoinColumn(name = "id_client")})
+	private List<Client> clients = new ArrayList<>();//soit new ici, addClient() avec if et new
 	
 
 	//+constructeurs , get/set, .toString()

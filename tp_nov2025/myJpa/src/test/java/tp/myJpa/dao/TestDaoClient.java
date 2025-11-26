@@ -21,9 +21,11 @@ public class TestDaoClient {
 	void testClientAvecComptes() {
 		Client cli1 = new Client(null,"Condor" , "Olie"); //mappedBy coté client
 		daoClient.insertNew(cli1);
+		
 		Compte cc1 = new Compte(null,"comptecA",50.0);
 		cc1.getClients().add(cli1); //JoinTable coté compte
 		daoCompte.insertNew(cc1);
+		
 		Compte cc2 = new Compte(null,"comptecB",70.0 );
 		cc2.getClients().add(cli1); //JoinTable coté compte
 		daoCompte.insertNew(cc2); 
@@ -34,6 +36,7 @@ public class TestDaoClient {
 		for(Compte c : cli1Relu.getComptes()){
 		System.out.println("\t" + c.toString());
 		}
+		
 		
 		//Solution2:
 		System.out.println("via repositoryCompte.findByClientId(idClient):");
