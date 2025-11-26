@@ -1,5 +1,6 @@
 package tp.myJpa.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 
@@ -30,6 +32,10 @@ public class Compte {
 	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "compte") //V1
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compte") //V2
 	private List<Operation> operations;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "comptes")
+	private List<Client> clients = new ArrayList<>();
+	
 
 	//+constructeurs , get/set, .toString()
 
@@ -85,8 +91,19 @@ public class Compte {
 	public void setOperations(List<Operation> operations) {
 		this.operations = operations;
 	}
-	
-	
+
+
+
+	public List<Client> getClients() {
+		return clients;
+	}
+
+
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
 	
 	
 

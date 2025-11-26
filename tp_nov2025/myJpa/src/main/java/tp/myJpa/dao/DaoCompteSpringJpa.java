@@ -1,11 +1,14 @@
 package tp.myJpa.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import tp.myJpa.dao.generic.DaoGenericJpa;
+import tp.myJpa.entity.Client;
 import tp.myJpa.entity.Compte;
 
 @Repository
@@ -54,5 +57,21 @@ public class DaoCompteSpringJpa extends DaoGenericJpa<Compte,Long> implements Da
 
     }
 
+	@Override
+	public List<Compte> findByClientId(long idClient) {
+		return entityManager.createQuery("SELECT cpt FROM Client cli LEFT JOIN  cli.comptes cpt WHERE cli.id = :idClient",Compte.class)
+				.setParameter("idClient", idClient)
+				.getResultList();
+	}
+
 
 }
+
+
+
+
+
+
+
+
+
