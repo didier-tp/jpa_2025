@@ -41,7 +41,8 @@ public class TestDaoClient {
 		
 		//Solution2:
 		System.out.println("via repositoryCompte.findByClientId(idClient):");
-		for(Compte c : daoCompte.findByClientId(cli1.getId())){
+		//for(Compte c : daoCompte.findByClientId(cli1.getId())){
+		for(Compte c : daoCompte.findComptesByNumCli(cli1.getId())){
 		System.out.println("\t" + c.toString());
 		}
 		

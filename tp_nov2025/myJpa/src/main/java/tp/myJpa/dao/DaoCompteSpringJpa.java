@@ -7,6 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import tp.myJpa.dao.generic.DaoGenericJpa;
 import tp.myJpa.entity.Client;
 import tp.myJpa.entity.Compte;
@@ -63,6 +68,20 @@ public class DaoCompteSpringJpa extends DaoGenericJpa<Compte,Long> implements Da
 				.setParameter("idClient", idClient)
 				.getResultList();
 	}
+	
+	public List<Compte> findComptesByNumCli(long numCli) {
+	
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Compte> criteriaQuery = cb.createQuery(Compte.class);
+		Root<Client> clientRoot = criteriaQuery.from(Client.class);
+		Predicate pEqNumCli = cb.equal(clientRoot.get("id") , numCli);
+		//Predicate pEqNumCli = cb.equal(clientRoot.get(Client_.id) , numCli);
+		Join<Client, Compte> joinComptesOfClient = clientRoot.join("comptes");
+		//Join<Client, Compte> joinComptesOfClient = clientRoot.join(Client_.comptes);
+		criteriaQuery.select(joinComptesOfClient);
+		criteriaQuery.where(pEqNumCli);
+		return this.entityManager.createQuery(criteriaQuery).getResultList();
+		}
 
 
 }
